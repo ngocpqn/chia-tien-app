@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chia tiền QR</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>💰 Chia tiền nhóm</h1>
+
+<div class="box">
+<label>Tổng tiền:</label>
+<input id="total" type="number" value="0">
+<button onclick="split()">Chia đều</button>
+</div>
+
+<table id="table">
+<thead>
+<tr>
+<th>Tên</th>
+<th>Số tiền</th>
+<th>QR</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+<button onclick="addRow()">+ Thêm người</button>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

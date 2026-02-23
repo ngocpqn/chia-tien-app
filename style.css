@@ -1,0 +1,30 @@
+body{
+ font-family:sans-serif;
+ text-align:center;
+ padding:20px;
+ background:#f4f6f9;
+}
+h1{color:#1a73e8}
+table{
+ margin:auto;
+ border-collapse:collapse;
+ background:white;
+}
+td,th{
+ border:1px solid #ddd;
+ padding:10px;
+}
+input{
+ padding:6px;
+ width:120px;
+}
+button{
+ padding:10px 15px;
+ margin:10px;
+ border:none;
+ background:#1a73e8;
+ color:white;
+ cursor:pointer;
+ border-radius:6px;
+}
+.box{margin-bottom:20px}
