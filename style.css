@@ -28,3 +28,12 @@ button{
  border-radius:6px;
 }
 .box{margin-bottom:20px}
+input[type=checkbox]{
+ transform:scale(1.4);
+ cursor:pointer;
+}
+
+.paid-row{
+ opacity:0.5;
+ background:#e6ffe6;
+}
