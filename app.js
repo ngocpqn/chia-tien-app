@@ -73,9 +73,9 @@ function vietQR(amount, content){
 
  const merchantInfo =
    f("00","A000000727") +
-   f("01",BIN) +
-   f("02",ACC) +
-   f("03","QRIBFTTA")
+   f("01","QRIBFTTA") +      // 🔥 phải ở đây
+   f("02",BIN) +
+   f("03",ACC)
 
  let payload =
   f("00","01") +
@@ -85,7 +85,7 @@ function vietQR(amount, content){
   f("54", amount || "0") +
   f("58","VN") +
   f("59", NAME) +
-  f("60","HANOI") +        // 🔥 BẮT BUỘC
+  f("60","HANOI") +
   f("62", f("08", content))
 
  const crc = crc16(payload + "6304")
@@ -140,4 +140,5 @@ document.addEventListener("change",()=>{
  updateQR()
  saveData()
 })
+
 
