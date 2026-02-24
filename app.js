@@ -71,16 +71,15 @@ function vietQR(amount, content){
   return id + String(val.length).padStart(2,"0") + val
  }
 
- const merchantInfo =
+ const merchantAccount =
    f("00","A000000727") +
-   f("01","QRIBFTTA") +      // 🔥 phải ở đây
-   f("02",BIN) +
-   f("03",ACC)
+   f("01","QRIBFTTA") +
+   f("02", BIN + ACC)   // 🔥 GHÉP BIN + STK
 
  let payload =
   f("00","01") +
   f("01","12") +
-  f("38", merchantInfo) +
+  f("38", merchantAccount) +
   f("53","704") +
   f("54", amount || "0") +
   f("58","VN") +
@@ -140,5 +139,6 @@ document.addEventListener("change",()=>{
  updateQR()
  saveData()
 })
+
 
 
