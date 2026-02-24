@@ -71,22 +71,24 @@ function vietQR(amount, content){
   return id + String(val.length).padStart(2,"0") + val
  }
 
+ const merchantInfo =
+   f("00","A000000727") +
+   f("01",BIN) +
+   f("02",ACC) +
+   f("03","QRIBFTTA")
+
  let payload =
   f("00","01") +
   f("01","12") +
-  f("38",
-    f("00","A000000727") +
-    f("01",BIN) +
-    f("02",ACC) +
-    f("03","QRIBFTTA")
-  ) +
+  f("38", merchantInfo) +
   f("53","704") +
-  f("54",amount || "0") +
+  f("54", amount || "0") +
   f("58","VN") +
-  f("59",NAME) +
-  f("62",f("08",content))
+  f("59", NAME) +
+  f("60","HANOI") +        // 🔥 BẮT BUỘC
+  f("62", f("08", content))
 
- let crc = crc16(payload + "6304")
+ const crc = crc16(payload + "6304")
  return payload + "6304" + crc
 }
 
@@ -138,3 +140,4 @@ document.addEventListener("change",()=>{
  updateQR()
  saveData()
 })
+
