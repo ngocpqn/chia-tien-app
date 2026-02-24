@@ -84,12 +84,17 @@ function vietQR(amount, content){
    f("01","QRIBFTTA") +
    f("02", BIN + ACC)   // 🔥 GHÉP BIN + STK
 
- let payload =
+let payload =
   f("00","01") +
   f("01","12") +
   f("38", merchantAccount) +
-  f("53","704") +
-  f("54", amount || "0") +
+  f("53","704")
+
+if(amount && Number(amount) > 0){
+  payload += f("54", amount)
+}
+
+payload +=
   f("58","VN") +
   f("59", NAME) +
   f("60","HANOI") +
@@ -102,7 +107,9 @@ function vietQR(amount, content){
 // ===== UPDATE QR =====
 function updateQR(){
  tbody.querySelectorAll("tr").forEach(tr=>{
-  const name = tr.querySelector(".name").value || "ThanhToan"
+  let rawName = tr.querySelector(".name").value || "ThanhToan"
+  let name = removeVietnameseTones(rawName)
+  name = name.trim().toUpperCase().substring(0,25)
   const money = tr.querySelector(".money").value || "0"
   const paid = tr.querySelector(".paid").checked
   const canvas = tr.querySelector("canvas")
@@ -117,7 +124,13 @@ function updateQR(){
   }
  })
 }
-
+// ===== hàm bỏ dấu =====
+function removeVietnameseTones(str){
+ return str.normalize("NFD")
+           .replace(/[\u0300-\u036f]/g, "")
+           .replace(/đ/g, "d")
+           .replace(/Đ/g, "D")
+}
 // ===== CHIA ĐỀU =====
 function split(){
  const total = Number(document.getElementById("total").value) || 0
@@ -147,6 +160,7 @@ document.addEventListener("change",()=>{
  updateQR()
  saveData()
 })
+
 
 
 
